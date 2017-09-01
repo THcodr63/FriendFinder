@@ -12,9 +12,9 @@ module.exports = function(app) {
 
 		var userResponses = userInput.scores;
 
-		var matchName = '';
-		var matchImage = '';
-		var totalDifference = 10000; 
+		var partnerName = '';
+		var partnerImage = '';
+		var score = 100; 
 		for (var i = 0; i < friends.length; i++) {
 
 			var diff = 0;
@@ -22,16 +22,16 @@ module.exports = function(app) {
 				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
 			}
 
-			if (diff < totalDifference) {
+			if (diff < score) {
 
-				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
+				score = diff;
+				partnerName = friends[i].name;
+				partnerImage = friends[i].photo;
 			}
 		}
 
 		friends.push(userInput);
 
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+		res.json({status: 'OK', partnerName: partnerName, partnerImage: partnerImage});
 	});
 };
